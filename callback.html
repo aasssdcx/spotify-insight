@@ -4,11 +4,15 @@
 <body>
   <h1>Spotify認証成功</h1>
   <script>
-    const hash = window.location.hash.substring(1);
+    const hash = window.location.hash.substring(1); // #以降を取得
     const params = new URLSearchParams(hash);
     const token = params.get("access_token");
-    document.body.innerHTML += `<p>アクセストークン：<code>${token}</code></p>`;
-    // 必要なら localStorage などに保存して別ページへリダイレクト
+
+    if (token) {
+      document.body.innerHTML += `<p>アクセストークン：<code>${token}</code></p>`;
+    } else {
+      document.body.innerHTML += `<p style='color:red;'>⚠️ アクセストークンが取得できませんでした。</p>`;
+    }
   </script>
 </body>
 </html>
